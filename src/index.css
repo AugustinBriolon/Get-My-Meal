@@ -140,6 +140,11 @@ h1 {
   font-family: 'Ubuntu', sans-serif;
 }
 
+.title-3d,
+.back-btn {
+  font-family: 'Helvetica', sans-serif;
+}
+
 /* HOME PAGE */
 
 .main-container {
