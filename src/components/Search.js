@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [allIngredients, setAllIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const url = 'https://www.themealdb.com/api/json/v1/1/';
   const inputRef = useRef();
 
@@ -14,28 +15,27 @@ const Search = () => {
     })
   }, [isLoading, url]);
 
-
-  const filtreIngrdients = () => {
-    const searchValue = inputRef.current.value;
-    const filteredIngredients = allIngredients.filter(ingredient => {
+  const filteredIngredients = useMemo(() => {
+    return allIngredients.filter(ingredient => {
       return ingredient.strIngredient.toLowerCase().includes(searchValue.toLowerCase());
     });
-    setAllIngredients(filteredIngredients);
-  };
+  }, [allIngredients, searchValue]);
 
-
+  const handleSearchInputChange = useCallback(() => {
+    setSearchValue(inputRef.current.value);
+  }, []);
   return (
     <section className='section main-container'>
       <h1 className='title-3d'>Search for Ingredient</h1>
 
       {isLoading ? (
         <div className='ingredients-container'>
-          <input type="search" className="search-bar" ref={inputRef} onInput={filtreIngrdients} />
+        <input type="search" className="search-bar" ref={inputRef} onInput={handleSearchInputChange} />
 
-          {inputRef.current && inputRef.current.value.length > 0 && (
+        {searchValue.length > 0 && (
           <div className="ingredients">
 
-            {allIngredients.map((ingredient, index) => (
+            {filteredIngredients.map((ingredient, index) => (
               <div key={index} className="ingredient-item">
                 <Link to={`/${ingredient.strIngredient}`} className='ingredient-link' >
                   {ingredient.strIngredient}
@@ -44,13 +44,15 @@ const Search = () => {
             ))}
 
           </div>
-          )}
+        )}
 
-        </div>
+      </div>
       ) : (
-        <p>Loading...</p>
+        <div className='ingredients-container skeleton-input'>
+          <div className="search-bar skeleton skeleton-input"></div>
+        </div>
       )}
-      
+
     </section>
   );
 };

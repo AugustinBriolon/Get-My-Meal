@@ -33,15 +33,18 @@ const Ingredient = () => {
     p.innerHTML = newText;
   }
 
-  console.log(mealData)
-
 
   return (
     <section className="meal-page section">
       {isLoading ? (
         <>
+          <Link to='/' className='back-btn'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Go Back Sarch for an Ingredient
+          </Link>
           <h1 className='title-3d'>{meal}</h1>
           <h2 className="title-category">Category: {mealData.strCategory}</h2>
+
 
           <div className="meal-container">
 
@@ -50,7 +53,7 @@ const Ingredient = () => {
             </div>
 
             <div className="meal-infos-methode">
-              <p ref={strInstructions}>{mealData.strInstructions}</p>
+              <p ref={strInstructions} className="meal-instructions">{mealData.strInstructions}</p>
             </div>
 
             <div className="meal-ingredient-container">
@@ -61,7 +64,7 @@ const Ingredient = () => {
                     {ingredient.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                   </Link>
                   <div className="line"></div>
-                  <p>{measures[index]}</p>
+                  <p className="meal-ingredient-measure">{measures[index]}</p>
                 </div>
               ))}
 
@@ -82,7 +85,38 @@ const Ingredient = () => {
 
           </div>
         </>
-      ) : <p>Loading...</p>}
+      ) :
+        <>
+          <div className='skeleton skeleton-long-title'></div>
+          <div className="skeleton skeleton-category"></div>
+
+          <div className="meal-container">
+
+            <div className="meal-img-container skeleton"></div>
+
+            <div className="meal-infos-methode">
+              <div className="skeleton skeleton-sentence"></div>
+              <div className="skeleton skeleton-sentence"></div>
+              <div className="skeleton skeleton-sentence"></div>
+              <div className="skeleton skeleton-sentence"></div>
+              <div className="skeleton skeleton-sentence"></div>
+              <div className="skeleton skeleton-sentence"></div>
+            </div>
+
+            <div className="meal-ingredient-container">
+              <div className="meal-ingredient skeleton skeleton-case"></div>
+              <div className="meal-ingredient skeleton skeleton-case"></div>
+              <div className="meal-ingredient skeleton skeleton-case"></div>
+              <div className="meal-ingredient skeleton skeleton-case"></div>
+              <div className="meal-ingredient skeleton skeleton-case"></div>
+              <div className="meal-ingredient skeleton skeleton-case"></div>
+            </div>
+
+            <div className="meal-video-container skeleton skeleton-iframe"></div>
+
+          </div>
+        </>
+      }
     </section>
   );
 }
