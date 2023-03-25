@@ -1,6 +1,6 @@
-# Meal Generator
+# Get My Meal
 
-This is a simple meal generator that will generate a random meal for you to cook. It is a simple project that I made to learn more about React JS.
+🍴 Looking for meal ideas? 🤔 Get inspired with "Get My Meal"! 🔍 Our ingredient search tool makes it easy to find tasty recipes based on your favorite ingredients. 🍽️ Say goodbye to mealtime boredom and explore new flavors today. Visit us now and start planning your next delicious meal. 🍳🍲🍛
 
 ## Installation
 
