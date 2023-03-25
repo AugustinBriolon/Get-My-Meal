@@ -89,6 +89,12 @@ h1 {
     1px 8px 1px var(--color-secondary);
 }
 
+@media screen and (max-width: 480px) {
+  .title-3d {
+    text-align: center;
+  }
+}
+
 .title-category {
   color: var(--color-secondary);
   font-weight: 700;
@@ -124,6 +130,7 @@ h1 {
 }
 
 /* FONT */
+
 .ingredient-link,
 .search-bar,
 .meal-link,
@@ -145,6 +152,13 @@ h1 {
 .ingredients-container {
   width: 50%;
 }
+
+@media screen and (max-width: 480px) {
+  .ingredients-container {
+    width: 100%;
+  }
+}
+
 
 .search-bar {
   background-color: var(--color-white);

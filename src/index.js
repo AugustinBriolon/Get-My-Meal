@@ -6,13 +6,13 @@ import {
 } from "react-router-dom";
 import './index.css';
 
-import Home from './pages/Home';
+import Search from './pages/Search';
 import Ingredient from './pages/Ingredient';
 import Meals from './pages/Meals';
 
 
 const router = createBrowserRouter([
-  { path: "/", element: <Home/>},
+  { path: "/", element: <Search/>},
   { path: "/:ingredient", element: <Ingredient/>  },
   { path: "/meal/:meal", element: <Meals/>  }
 ]);
