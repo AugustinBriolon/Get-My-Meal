@@ -195,9 +195,12 @@ h1 {
   background-color: var(--color-white);
   border-radius: var(--border-radius-medium);
   border: 1px solid var(--color-primary);
+  position: relative;
 }
 
-.ingredients {
+.ingredients-list {
+  position: absolute;
+  top: calc(0% + 35px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -206,7 +209,8 @@ h1 {
   overflow: scroll;
   overflow-x: hidden;
   width: 100%;
-  border-bottom-left-radius: var(--border-radius-small);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius-small);
 }
 
 .ingredient-item {
@@ -231,6 +235,7 @@ h1 {
 }
 
 .ingredient-item .ingredient-link {
+  cursor: pointer;
   text-align: center;
   color: var(--color-primary);
   padding: 1rem;
@@ -238,8 +243,62 @@ h1 {
   border-radius: var(--border-radius-small);
 }
 
-.ingredient-item:hover a {
+.ingredient-item:hover p {
   color: var(--color-white);
+}
+
+.ingredients-list-clicked {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.ingredient-clicked {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--color-primary);
+  padding: 5px 1rem;
+  margin: 1rem;
+  color: var(--color-white);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.ingredient-clicked a {
+  color: var(--color-white);
+}
+
+.ingredient-clicked:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.ingredient-clicked:hover .btn-remove-ingredient {
+  color: var(--color-primary);
+}
+
+.btn-remove-ingredient {
+  border: none;
+  background: transparent;
+  padding-left: 5px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-ingredient svg {
+  cursor: pointer;
 }
 
 /* INGREDIENT PAGE */
