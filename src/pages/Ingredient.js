@@ -5,7 +5,7 @@ const Ingredient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { ingredient } = useParams();
   const [ingredientData, setIngredientData] = useState([]);
-  const url = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+  const url = 'https://www.themealdb.com/api/json/v2/9973533/filter.php?i=';
 
   useEffect(() => {
     fetch(url + `${ingredient}`)

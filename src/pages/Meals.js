@@ -5,7 +5,7 @@ const Ingredient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { meal } = useParams();
   const [mealData, setMealtData] = useState([]);
-  const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  const url = 'https://www.themealdb.com/api/json/v2/9973533/search.php?s=';
   const ingredients = [];
   const measures = [];
   const strInstructions = useRef();

@@ -2,13 +2,14 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
+  const url = 'https://www.themealdb.com/api/json/v2/9973533/';
+  const inputRef = useRef();
   const [allIngredients, setAllIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const url = 'https://www.themealdb.com/api/json/v1/1/';
-  const inputRef = useRef();
   const [filteredIngredients, setFilteredIngredients] = useState([]);
-  const [searchMyIngredientsArray, setSearchMyIngredientsArray] = useState([]);
+  const [isLoadingMeals, setIsLoadingMeals] = useState(false);
+  const [myMealsFromIngredients, setMyMealsFromIngredients] = useState([]);
 
   useEffect(() => {
     fetch(url + 'list.php?i=list').then(res => res.json()).then(data => {
@@ -17,7 +18,7 @@ const Search = () => {
     })
   }, [isLoading, url]);
 
-  const searchMyIngredients = useMemo(() => {
+  const searchIngredients = useMemo(() => {
     return allIngredients.filter(ingredient => {
       return ingredient.strIngredient.toLowerCase().includes(searchValue.toLowerCase());
     });
@@ -28,15 +29,35 @@ const Search = () => {
   }, []);
 
   const addIngredient = (e) => {
-    setFilteredIngredients([...filteredIngredients, e.target.innerText]);
-    setSearchMyIngredientsArray([...new Set(filteredIngredients)]);
+    const newIngredient = e.target.innerText;
+    if (!filteredIngredients.includes(newIngredient)) {
+      setFilteredIngredients([...filteredIngredients, newIngredient]);
+    }
+    setSearchValue('');
   }
 
   const removeIngredient = (index) => {
-    const newFilteredIngredients = [...searchMyIngredientsArray];
+    const newFilteredIngredients = [...filteredIngredients];
     newFilteredIngredients.splice(index, 1);
-    setSearchMyIngredientsArray(newFilteredIngredients);
+    setFilteredIngredients(newFilteredIngredients);
   }
+
+  useEffect(() => {
+    getMealsFromFilteredIngredients();
+  }, [filteredIngredients]);
+
+  const getMealsFromFilteredIngredients = useCallback(() => {
+    fetch(url + 'filter.php?i=' + filteredIngredients.join(',').toLowerCase())
+      .then(res => res.json())
+      .then(data => {
+        setMyMealsFromIngredients(data.meals);
+        if (data.meals) {
+          setIsLoadingMeals(true);
+        } else {
+          setIsLoadingMeals(false);
+        }
+      })
+  }, [filteredIngredients]);
 
   return (
     <section className='section main-container'>
@@ -50,7 +71,7 @@ const Search = () => {
             {searchValue.length > 0 && (
               <div className="ingredients-list">
 
-                {searchMyIngredients.map((ingredient, index) => (
+                {searchIngredients.map((ingredient, index) => (
                   <div key={index} className="ingredient-item">
                     <p className='ingredient-link' onClick={addIngredient}>
                       {ingredient.strIngredient}
@@ -63,10 +84,10 @@ const Search = () => {
 
           </div>
 
-          {searchMyIngredientsArray.length > 0 && (
+          {filteredIngredients.length > 0 && (
             <div className="ingredients-list-clicked">
 
-              {searchMyIngredientsArray.map((ingredient, index) => (
+              {filteredIngredients.map((ingredient, index) => (
                 <div key={index} className="ingredient-clicked">
                   {ingredient}
                   <button className='btn-remove-ingredient' onClick={() => removeIngredient(index)}>
@@ -78,7 +99,21 @@ const Search = () => {
             </div>
           )}
 
-          
+          {isLoadingMeals && filteredIngredients.length !== 0 && myMealsFromIngredients && myMealsFromIngredients.length > 0 && (
+            <div className="meal-list">
+
+              {myMealsFromIngredients.map((meal, index) => (
+                <div key={index} className="ingredient-meal-container" style={{ backgroundImage: `url(${meal.strMealThumb})` }}>
+                  <Link to={`/meal/${meal.strMeal}`} className='meal-link' >
+                    {meal.strMeal}
+                  </Link>
+                </div>
+              ))}
+
+            </div>
+          )}
+
+
         </>
       ) : (
         <div className='ingredients-container skeleton-input'>

@@ -304,6 +304,7 @@ h1 {
 /* INGREDIENT PAGE */
 
 .meal-list {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
@@ -312,6 +313,7 @@ h1 {
 
 .ingredient-meal-container {
   min-height: 300px;
+  max-width: 430px;
   display: flex;
   flex-direction: column;
   align-items: center;
