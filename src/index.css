@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Helvetica', sans-serif;
 }
 
 :root {
@@ -140,10 +141,6 @@ h1 {
   font-family: 'Ubuntu', sans-serif;
 }
 
-.title-3d,
-.back-btn {
-  font-family: 'Helvetica', sans-serif;
-}
 
 /* HOME PAGE */
 
