@@ -18,6 +18,10 @@ const Search = () => {
     })
   }, [isLoading, url]);
 
+  useEffect(() => {
+    getMealsFromFilteredIngredients();
+  }, [filteredIngredients]);
+
   const searchIngredients = useMemo(() => {
     return allIngredients.filter(ingredient => {
       return ingredient.strIngredient.toLowerCase().includes(searchValue.toLowerCase());
@@ -34,6 +38,7 @@ const Search = () => {
       setFilteredIngredients([...filteredIngredients, newIngredient]);
     }
     setSearchValue('');
+    inputRef.current.value = '';
   }
 
   const removeIngredient = (index) => {
@@ -41,10 +46,6 @@ const Search = () => {
     newFilteredIngredients.splice(index, 1);
     setFilteredIngredients(newFilteredIngredients);
   }
-
-  useEffect(() => {
-    getMealsFromFilteredIngredients();
-  }, [filteredIngredients]);
 
   const getMealsFromFilteredIngredients = useCallback(() => {
     fetch(url + 'filter.php?i=' + filteredIngredients.join(',').toLowerCase())

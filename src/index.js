@@ -9,12 +9,16 @@ import './index.css';
 import Search from './pages/Search';
 import Ingredient from './pages/Ingredient';
 import Meals from './pages/Meals';
+import Category from './pages/Category';
+import Area from './pages/Area';
 
 
 const router = createBrowserRouter([
   { path: "/", element: <Search/>},
-  { path: "/:ingredient", element: <Ingredient/>  },
-  { path: "/meal/:meal", element: <Meals/>  }
+  { path: "ingredient/:ingredient", element: <Ingredient/>  },
+  { path: "/meal/:meal", element: <Meals/>  },
+  { path: "/category/:category", element: <Category/>  },
+  { path: "/area/:area", element: <Area/>  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -22,4 +26,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-

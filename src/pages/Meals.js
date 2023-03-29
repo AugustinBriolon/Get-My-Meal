@@ -33,7 +33,6 @@ const Ingredient = () => {
     p.innerHTML = newText;
   }
 
-
   return (
     <section className="meal-page section">
       {isLoading ? (
@@ -42,9 +41,18 @@ const Ingredient = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
             Go Back Sarch for an Ingredient
           </Link>
-          <h1 className='title-3d'>{meal}</h1>
-          <h2 className="title-category">Category: {mealData.strCategory}</h2>
 
+          <h1 className='title-3d'>{meal}</h1>
+          <h2 className="title-category">Category: 
+            <Link to={`/category/${mealData.strCategory}`} className='category-link hover-underline-animation' >
+              {mealData.strCategory}
+            </Link>
+          </h2>
+          <h2 className="title-category">Area:
+            <Link to={`/area/${mealData.strArea}`} className='area-link hover-underline-animation' >
+              {mealData.strArea}
+            </Link>
+          </h2>
 
           <div className="meal-container">
 
@@ -60,7 +68,7 @@ const Ingredient = () => {
 
               {ingredients.map((ingredient, index) => (
                 <div key={index} className="meal-ingredient">
-                  <Link to={`/${ingredient}`} className='ingredient-link' >
+                  <Link to={`/ingredient/${ingredient}`} className='ingredient-link' >
                     {ingredient.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                   </Link>
                   <div className="line"></div>

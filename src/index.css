@@ -99,6 +99,7 @@ h1 {
 .title-category {
   color: var(--color-secondary);
   font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .line {
@@ -353,6 +354,14 @@ h1 {
   margin: 75px 0;
 }
 
+.category-link,
+.area-link {
+  color: var(--color-secondary);
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
 
 .meal-img-container {
   position: absolute;
@@ -415,7 +424,11 @@ h1 {
 
 .ingredient-link {
   color: var(--color-secondary);
+  transition: all 0.3s ease;
+}
 
+.ingredient-link:hover {
+  color: var(--color-primary);
 }
 
 .meal-video-container {
@@ -493,4 +506,29 @@ h1 {
 
 .skeleton-iframe {
 
+}
+
+/* ANIMATION */
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-secondary);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
