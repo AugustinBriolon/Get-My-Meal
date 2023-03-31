@@ -162,16 +162,19 @@ h1 {
   }
 }
 
+.label-search {
+  width: 100%;
+}
 
 .search-bar {
-  background-color: var(--color-white);
   border-radius: var(--border-radius-medium);
-  border: 1px solid var(--color-primary);
+  border: 2px solid var(--color-primary);
   margin: 0;
   font-size: 1.6rem;
   text-align: center;
   color: var(--color-primary);
   transform: scale(1.05);
+  background-color: var(--color-white);
 }
 
 .search-bar:focus {
@@ -209,6 +212,7 @@ h1 {
   width: 100%;
   border: 1px solid var(--color-primary);
   border-radius: var(--border-radius-small);
+  background-color: var(--color-white);
 }
 
 .ingredient-item {
@@ -219,7 +223,6 @@ h1 {
   font-size: 16px;
   padding: 0;
   color: var(--color-primary);
-  background-color: var(--color-white);
   border-top: 1px solid var(--color-primary);
 }
 

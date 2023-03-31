@@ -10,6 +10,8 @@ const Search = () => {
   const [filteredIngredients, setFilteredIngredients] = useState([]);
   const [isLoadingMeals, setIsLoadingMeals] = useState(false);
   const [myMealsFromIngredients, setMyMealsFromIngredients] = useState([]);
+  const ingredientList = ["Milk", "Eggs", "Butter", "Salt", "Pepper", "Garlic", "Onion", "Tomato", "Cheese", "Bread", "Chicken", "Beef", "Pork", "Fish", "Shrimp", "Lettuce", "Carrot", "Potato", "Broccoli", "Mushroom"];
+  const [placeholder, setPlaceholder] = useState('');
 
   useEffect(() => {
     fetch(url + 'list.php?i=list').then(res => res.json()).then(data => {
@@ -60,14 +62,23 @@ const Search = () => {
       })
   }, [filteredIngredients]);
 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
+      setPlaceholder('Search for ' + randomIngredient);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [ingredientList]);
+
   return (
     <section className='section main-container'>
-      <h1 className='title-3d'>Search for Ingredient</h1>
+      <h1 className='title-3d'>Get My Meal</h1>
 
       {isLoading ? (
         <>
           <div className='ingredients-container'>
-            <input type="search" className="search-bar" ref={inputRef} onInput={handleSearchInputChange} />
+            <input type="search" className="search-bar" aria-label="search" placeholder={placeholder} ref={inputRef} onInput={handleSearchInputChange} />
 
             {searchValue.length > 0 && (
               <div className="ingredients-list">
