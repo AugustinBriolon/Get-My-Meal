@@ -10,7 +10,6 @@ const Search = () => {
   const [filteredIngredients, setFilteredIngredients] = useState([]);
   const [isLoadingMeals, setIsLoadingMeals] = useState(false);
   const [myMealsFromIngredients, setMyMealsFromIngredients] = useState([]);
-  const ingredientList = ["Milk", "Eggs", "Butter", "Salt", "Pepper", "Garlic", "Onion", "Tomato", "Cheese", "Bread", "Chicken", "Beef", "Pork", "Fish", "Shrimp", "Lettuce", "Carrot", "Potato", "Broccoli", "Mushroom"];
   const [placeholder, setPlaceholder] = useState('');
 
   useEffect(() => {
@@ -25,10 +24,15 @@ const Search = () => {
   }, [filteredIngredients]);
 
   const searchIngredients = useMemo(() => {
-    return allIngredients.filter(ingredient => {
+    const filteredIngredients = allIngredients.filter(ingredient => {
       return ingredient.strIngredient.toLowerCase().includes(searchValue.toLowerCase());
     });
+    const sortedIngredients = filteredIngredients.sort((a, b) => {
+      return a.strIngredient.localeCompare(b.strIngredient);
+    });
+    return sortedIngredients;
   }, [allIngredients, searchValue]);
+  
 
   const handleSearchInputChange = useCallback(() => {
     setSearchValue(inputRef.current.value);
@@ -63,13 +67,13 @@ const Search = () => {
   }, [filteredIngredients]);
 
 
+
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
-      setPlaceholder('Search for ' + randomIngredient);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [ingredientList]);
+    const ingredientList = ["Milk", "Eggs", "Butter", "Salt", "Pepper", "Garlic", "Onion", "Tomato", "Cheese", "Bread", "Chicken", "Beef", "Pork", "Fish", "Shrimp", "Lettuce", "Carrot", "Potato", "Broccoli", "Mushroom",];
+    const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
+    setPlaceholder(randomIngredient);
+  }, []);
 
   return (
     <section className='section main-container'>
@@ -78,7 +82,7 @@ const Search = () => {
       {isLoading ? (
         <>
           <div className='ingredients-container'>
-            <input type="search" className="search-bar" aria-label="search" placeholder={placeholder} ref={inputRef} onInput={handleSearchInputChange} />
+            <input type="search" className="search-bar" aria-label="search" placeholder={`Search for ` + placeholder} ref={inputRef} onInput={handleSearchInputChange} />
 
             {searchValue.length > 0 && (
               <div className="ingredients-list">

@@ -42,17 +42,14 @@ const Ingredient = () => {
             Go Back Sarch for an Ingredient
           </Link>
 
-          <h1 className='title-3d'>{meal}</h1>
-          <h2 className="title-category">Category: 
+          <div className="btn-container">
             <Link to={`/category/${mealData.strCategory}`} className='category-link hover-underline-animation' >
               {mealData.strCategory}
             </Link>
-          </h2>
-          <h2 className="title-category">Area:
             <Link to={`/area/${mealData.strArea}`} className='area-link hover-underline-animation' >
               {mealData.strArea}
             </Link>
-          </h2>
+          </div>
 
           <div className="meal-container">
 
