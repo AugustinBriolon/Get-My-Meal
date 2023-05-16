@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Helvetica", sans-serif;
 }
 
 :root {
@@ -53,6 +53,7 @@ h1 {
   line-height: 1.2;
   margin: 2rem;
   margin-left: 0;
+  text-align: center;
 }
 
 .App {
@@ -139,9 +140,8 @@ h1 {
 .meal-instructions,
 .title-category,
 .meal-ingredient-measure {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
-
 
 /* HOME PAGE */
 
@@ -150,6 +150,17 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 100%;
+  max-width: 150px;
 }
 
 .ingredients-container {
@@ -309,7 +320,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
-  margin-bottom: 2rem;  
+  margin-bottom: 2rem;
 }
 
 .ingredient-meal-container {
@@ -365,7 +376,6 @@ h1 {
   transition: all 0.3s ease;
 }
 
-
 .meal-img-container {
   position: absolute;
   top: 0%;
@@ -413,7 +423,7 @@ h1 {
 }
 
 .meal-ingredient {
-  min-width: 100px; 
+  min-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -446,7 +456,6 @@ h1 {
 .meal-video-container iframe {
   border: none;
 }
-
 
 /* SKELETON */
 
@@ -508,7 +517,6 @@ h1 {
 }
 
 .skeleton-iframe {
-
 }
 
 /* ANIMATION */
@@ -519,7 +527,7 @@ h1 {
 }
 
 .hover-underline-animation::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);

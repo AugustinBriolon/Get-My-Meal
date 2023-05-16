@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
+import logo from '../images/logo.png';
+import img1 from '../images/img1.png';
+
 const Search = () => {
   const url = 'https://www.themealdb.com/api/json/v2/9973533/';
   const inputRef = useRef();
@@ -10,7 +13,8 @@ const Search = () => {
   const [filteredIngredients, setFilteredIngredients] = useState([]);
   const [isLoadingMeals, setIsLoadingMeals] = useState(false);
   const [myMealsFromIngredients, setMyMealsFromIngredients] = useState([]);
-  const [placeholder, setPlaceholder] = useState('');
+  // const [placeholder, setPlaceholder] = useState('');
+
 
   useEffect(() => {
     fetch(url + 'list.php?i=list').then(res => res.json()).then(data => {
@@ -32,7 +36,7 @@ const Search = () => {
     });
     return sortedIngredients;
   }, [allIngredients, searchValue]);
-  
+
 
   const handleSearchInputChange = useCallback(() => {
     setSearchValue(inputRef.current.value);
@@ -69,20 +73,23 @@ const Search = () => {
 
 
 
-  useEffect(() => {
-    const ingredientList = ["Milk", "Eggs", "Butter", "Salt", "Pepper", "Garlic", "Onion", "Tomato", "Cheese", "Bread", "Chicken", "Beef", "Pork", "Fish", "Shrimp", "Lettuce", "Carrot", "Potato", "Broccoli", "Mushroom",];
-    const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
-    setPlaceholder(randomIngredient);
-  }, []);
+  // useEffect(() => {
+  //   const ingredientList = ["Milk", "Eggs", "Butter", "Salt", "Pepper", "Garlic", "Onion", "Tomato", "Cheese", "Bread", "Chicken", "Beef", "Pork", "Fish", "Shrimp", "Lettuce", "Carrot", "Potato", "Broccoli", "Mushroom",];
+  //   const randomIngredient = ingredientList[Math.floor(Math.random() * ingredientList.length)];
+  //   setPlaceholder(randomIngredient);
+  // }, []);
 
   return (
     <section className='section main-container'>
-      <h1 className='title-3d'>Get My Meal</h1>
+      <div className='logo-container'>
+        <img src={logo} alt="logo" className='logo img' />
+        <h1 className='title-3d'>Tell us what’s in your fridge, we will tell you what to cook !</h1>
+      </div>
 
       {isLoading ? (
         <>
           <div className='ingredients-container'>
-            <input type="search" className="search-bar" aria-label="search" placeholder={`Search for ` + placeholder} ref={inputRef} onInput={handleSearchInputChange} />
+            <input type="search" className="search-bar" aria-label="search" placeholder={`Search for ingredient`} ref={inputRef} onInput={handleSearchInputChange} />
 
             {searchValue.length > 0 && (
               <div className="ingredients-list">
