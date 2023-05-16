@@ -51,8 +51,7 @@ h1 {
   font-size: 5rem;
   font-weight: 700;
   line-height: 1.2;
-  margin: 2rem;
-  margin-left: 0;
+  margin: 0 2rem 2rem 0;
   text-align: center;
 }
 
@@ -152,6 +151,7 @@ h1 {
   justify-content: center;
 }
 
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -161,6 +161,51 @@ h1 {
 .logo {
   width: 100%;
   max-width: 150px;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 300px;
+  grid-gap: 10px;
+  height: 100vh;
+  width: 100vw;
+}
+
+@media screen and (max-width: 850px) {
+  .masonry-grid {
+    display: none;
+  }
+
+  .content .title-input {
+  max-width: 100%;
+}
+}
+
+.masonry-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-input,
+.masonry-grid {
+  max-width: 50%;
 }
 
 .ingredients-container {
@@ -316,6 +361,7 @@ h1 {
 /* INGREDIENT PAGE */
 
 .meal-list {
+  padding: 2rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -325,7 +371,7 @@ h1 {
 
 .ingredient-meal-container {
   min-height: 300px;
-  max-width: 430px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
